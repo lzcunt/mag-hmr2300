@@ -17,7 +17,7 @@ jobs:
       mergedSha: ${{ steps.prepare.outputs.mergedSha }}
     steps:
       - id: prepare
-        uses: itu-rover/ci-actions/prepare@main
+        uses: itu-rover/ci-actions@main
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:

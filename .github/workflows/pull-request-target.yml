@@ -1,0 +1,24 @@
+# Heavily inspired by Nixpkgs.
+name: PR
+
+on:
+  pull_request_target:
+
+concurrency:
+  group: pr-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  prepare:
+    runs-on: ubuntu-slim
+    outputs:
+      mergedSha: ${{ steps.prepare.outputs.mergedSha }}
+    steps:
+      - id: prepare
+        uses: itu-rover/ci-actions/prepare@main
+      - run: echo random-number "$RANDOM_NUMBER"
+        shell: bash
+        env:
+          RANDOM_NUMBER: ${{ steps.prepare.outputs.mergedSha }}

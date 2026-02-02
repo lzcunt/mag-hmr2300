@@ -22,6 +22,8 @@ jobs:
         uses: itu-rover/ci-actions@main
         with:
           pull-number: ${{ github.event.pull_request.number }}
+          ci-app-id: ${{ vars.ROVER_CI_APP_ID }}
+          ci-private-key: ${{ secrets.ROVER_CI_PRIVATE_KEY }}
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:

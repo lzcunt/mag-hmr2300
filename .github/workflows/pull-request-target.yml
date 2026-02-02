@@ -14,11 +14,13 @@ jobs:
   prepare:
     runs-on: ubuntu-slim
     outputs:
-      mergedSha: ${{ steps.prepare.outputs.mergedSha }}
+      mergedSha: ${{ steps.prepare.outputs.merged-sha }}
     steps:
       - id: prepare
         uses: itu-rover/ci-actions@main
+        with:
+          pull-number: ${{ github.event.pull_request.number }}
       - run: echo random-number "$RANDOM_NUMBER"
         shell: bash
         env:
-          RANDOM_NUMBER: ${{ steps.prepare.outputs.mergedSha }}
+          RANDOM_NUMBER: ${{ steps.prepare.outputs.merged-sha }}
